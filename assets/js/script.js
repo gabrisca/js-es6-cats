@@ -15,6 +15,7 @@ const printHtml = (target, color, name) => {
   return $(target).append(`
   <li>
         <i class="fas fa-cat fa-2x" style ="color:${color}"></i>
+        <i class="fas fa-ribbon fa-2x" style="color:${color}"></i>
         <span>${name}</span>
   </li>
   `)
@@ -61,7 +62,7 @@ $(function(){
   ];
 
   // Milestone 1: stampo i gattini in ul
-  // ciclo forEach LO UTILIZZO PER VEDERE I CONTENUTI DI UN ARRAY
+  // ciclo forEach LO UTILIZZO PER VEDERE I CONTENUTI DI UN ARRAY (no return)
   cats.forEach((cat) => {
     //cat corrisponde a cats[i]
     // stampo i gatti nell'ul grazie alla funzione printHtml
@@ -76,15 +77,37 @@ $(function(){
   $(".fa-cat").mouseleave(function (){
     $(this).removeClass("active");
   });
+
+  // Milestone 2;
+  // aggiungo un fiocco ai gatti
+  // .map LO UTILIZZO PER CLONARE I CONTENUTI DI UN ARRAY IN UN ALTRO ARRAY E MODIFICARLI (return obbligatorio)
+  const pink = "#FF69B4";
+  const blue = "#1E90FF";
+
+  const newCats = cats.map((cat)=>{
+    // var      (se è vero che....     ) ? se è true : se è falso
+    let color = cat.gender === "female" ? pink : blue;
+    let opacity = cat.age / 10;
+    return {
+      // prendo tutto il contenuto originale di cat
+      ...cat,
+      // e aggiungo l'oggetto ribbon con le relative proprietà
+      ribbon: {
+        color,
+        opacity,
+      },
+    }
+  });
+  console.log(newCats);
   
   // Milestone 2; 
   // divido i gatti femmina e i gatti maschi in due diversi array
-  // .filter LO UTILIZZO PER FILTRARE I CONTENUTI DI UN ARRAY
-  const catsFemale = cats.filter((cat) => {
+  // .filter LO UTILIZZO PER FILTRARE I CONTENUTI DI UN ARRAY (return obbligatorio)
+  const catsFemale = newCats.filter((cat) => {
     return cat.sex === "female"
   });
   console.log(catsFemale)
-  const catsMale = cats.filter((cat) => {
+  const catsMale = newCats.filter((cat) => {
     return cat.sex === "male"
   });
   console.log(catsMale)
