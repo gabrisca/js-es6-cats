@@ -50,7 +50,7 @@ $(function(){
       name: "Fragola",
       age: 4,
       color: "#F0FFFF",
-      sex: "male"
+      sex: "female"
     },
     {
       name: "Sansone",
@@ -60,12 +60,10 @@ $(function(){
     },
   ];
 
-  // Milestone 1: ciclo forEach
-  // LO UTILIZZO PER VEDERE I CONTENUTI DI UN ARRAY
-
+  // Milestone 1: stampo i gattini in ul
+  // ciclo forEach LO UTILIZZO PER VEDERE I CONTENUTI DI UN ARRAY
   cats.forEach((cat) => {
     //cat corrisponde a cats[i]
-    console.log(cat); // mi restituisce gli oggetti (cat)dell'array (cats)
     // stampo i gatti nell'ul grazie alla funzione printHtml
     printHtml("ul.cats", cat.color, cat.name)
     // senza return
@@ -79,7 +77,25 @@ $(function(){
     $(this).removeClass("active");
   });
   
- 
+  // Milestone 2; 
+  // divido i gatti femmina e i gatti maschi in due diversi array
+  // .filter LO UTILIZZO PER FILTRARE I CONTENUTI DI UN ARRAY
+  const catsFemale = cats.filter((cat) => {
+    return cat.sex === "female"
+  });
+  console.log(catsFemale)
+  const catsMale = cats.filter((cat) => {
+    return cat.sex === "male"
+  });
+  console.log(catsMale)
+
+  // li stampo a video in due nuove ul
+  catsFemale.forEach((cat) => {
+    printHtml("ul.female", cat.color, cat.name)
+  });
+  catsMale.forEach((cat) => {
+    printHtml("ul.male", cat.color, cat.name)
+  });
 
 }); // END DOC.READY
 

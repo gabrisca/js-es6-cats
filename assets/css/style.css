@@ -19,7 +19,7 @@ body {
   text-transform: uppercase;
 }
 
-#container ul.cats{
+#container ul{
   list-style: none;
   margin: 20px;
   padding: 5px;
@@ -27,19 +27,26 @@ body {
   border-radius: 10px;
 }
 
-#container ul.cats li {
+#container ul h2 {
+  text-align: center;
+  color:coral;
+  font-style: oblique;
+}
+
+#container ul li {
   display: flex;
   justify-content:space-evenly;
   margin: 20px;
   line-height: 30px;
   background-color: rgba(196, 184, 184, 0.226);
+  cursor: pointer;
 }
 
-#container ul.cats li .fa-cat {
+#container ul li .fa-cat {
   width: 50%;
 }
 
-#container ul.cats li span {
+#container ul li span {
   width: 50%;
   text-align: right;
   color: rgb(0, 0, 0);
