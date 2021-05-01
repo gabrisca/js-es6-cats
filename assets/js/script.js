@@ -12,10 +12,10 @@
 //F U N C T I O N S//
 /////////////////////
 const printHtml = (target, color, name) => {
-  return $(target).append(`
+    return $(target).append(`
   <li>
         <i class="fas fa-cat fa-2x" style ="color:${color}"></i>
-        <i class="fas fa-ribbon fa-2x" style="color:${color}"></i>
+        <i class="fas fa-ribbon fa-2x" style ="color:${color}"></i>
         <span>${name}</span>
   </li>
   `)
@@ -77,37 +77,15 @@ $(function(){
   $(".fa-cat").mouseleave(function (){
     $(this).removeClass("active");
   });
-
-  // Milestone 2;
-  // aggiungo un fiocco ai gatti
-  // .map LO UTILIZZO PER CLONARE I CONTENUTI DI UN ARRAY IN UN ALTRO ARRAY E MODIFICARLI (return obbligatorio)
-  const pink = "#FF69B4";
-  const blue = "#1E90FF";
-
-  const newCats = cats.map((cat)=>{
-    // var      (se è vero che....     ) ? se è true : se è falso
-    let color = cat.gender === "female" ? pink : blue;
-    let opacity = cat.age / 10;
-    return {
-      // prendo tutto il contenuto originale di cat
-      ...cat,
-      // e aggiungo l'oggetto ribbon con le relative proprietà
-      ribbon: {
-        color,
-        opacity,
-      },
-    }
-  });
-  // console.log(newCats);
   
   // Milestone 2; 
   // divido i gatti femmina e i gatti maschi in due diversi array
   // .filter LO UTILIZZO PER FILTRARE I CONTENUTI DI UN ARRAY (return obbligatorio)
-  const catsFemale = newCats.filter((cat) => {
+  const catsFemale = cats.filter((cat) => {
     return cat.sex === "female"
   });
   // console.log(catsFemale)
-  const catsMale = newCats.filter((cat) => {
+  const catsMale = cats.filter((cat) => {
     return cat.sex === "male"
   });
   // console.log(catsMale)
@@ -119,7 +97,6 @@ $(function(){
   catsMale.forEach((cat) => {
     printHtml("ul.male", cat.color, cat.name)
   });
-
 
   // Milestone 3
   // Creare un nuovo array con prima tutti i gattini femmina e poi tutti i gattini maschio

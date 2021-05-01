@@ -58,3 +58,10 @@ body {
 .active {
   border-left: 4px solid chartreuse;
 }
+
+.pink {
+  color: "#FF69B4";
+}
+.blue {
+  color: "#1E90FF";
+}
