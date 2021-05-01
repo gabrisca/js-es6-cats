@@ -98,7 +98,7 @@ $(function(){
       },
     }
   });
-  console.log(newCats);
+  // console.log(newCats);
   
   // Milestone 2; 
   // divido i gatti femmina e i gatti maschi in due diversi array
@@ -106,11 +106,11 @@ $(function(){
   const catsFemale = newCats.filter((cat) => {
     return cat.sex === "female"
   });
-  console.log(catsFemale)
+  // console.log(catsFemale)
   const catsMale = newCats.filter((cat) => {
     return cat.sex === "male"
   });
-  console.log(catsMale)
+  // console.log(catsMale)
 
   // li stampo a video in due nuove ul
   catsFemale.forEach((cat) => {
@@ -120,5 +120,14 @@ $(function(){
     printHtml("ul.male", cat.color, cat.name)
   });
 
+
+  // Milestone 3
+  // Creare un nuovo array con prima tutti i gattini femmina e poi tutti i gattini maschio
+  const mergeCats = [...catsFemale, ...catsMale];
+  console.log(mergeCats)
+  // li stampo a video
+  mergeCats.forEach((cat) => {
+    printHtml("ul.ordered", cat.color, cat.name)
+  });
 }); // END DOC.READY
 
