@@ -11,21 +11,21 @@
 /////////////////////
 //F U N C T I O N S//
 /////////////////////
-const printHtml = (target, color, name) => {
-    return $(target).append(`
+const printHtml = (target, color, name, ribbonCl, ribbonOp) => {
+  return $(target).append(`
   <li>
         <i class="fas fa-cat fa-2x" style ="color:${color}"></i>
-        <i class="fas fa-ribbon fa-2x" style ="color:${color}"></i>
+        <i class="fas fa-ribbon fa-2x" style ="color:${ribbonCl};opacity: ${ribbonOp}"></i>
         <span>${name}</span>
   </li>
-  `)
-}
+  `);
+};
 
 ////////E N D/////////
 //F U N C T I O N S//
 /////////////////////
 
-$(function(){
+$(function () {
   // console.log("doc ready");
 
   const cats = [
@@ -33,31 +33,31 @@ $(function(){
       name: "Birillo",
       age: 15,
       color: "#8B4513",
-      sex: "male"
+      sex: "male",
     },
     {
       name: "Gina",
       age: 7,
       color: "#000000",
-      sex: "female"
+      sex: "female",
     },
     {
       name: "Paul",
       age: 2,
       color: "#00BFFF",
-      sex: "male"
+      sex: "male",
     },
     {
       name: "Fragola",
       age: 4,
       color: "#F0FFFF",
-      sex: "female"
+      sex: "female",
     },
     {
       name: "Sansone",
-      age: 15,
+      age: 11,
       color: "#A52A2A",
-      sex: "male"
+      sex: "male",
     },
   ];
 
@@ -65,46 +65,83 @@ $(function(){
   // ciclo forEach LO UTILIZZO PER VEDERE I CONTENUTI DI UN ARRAY (no return)
   cats.forEach((cat) => {
     //cat corrisponde a cats[i]
-    // stampo i gatti nell'ul grazie alla funzione printHtml
-    printHtml("ul.cats", cat.color, cat.name)
-    // senza return
+    // Milestone 2: aggiungo ribbon
+    // aggiungo oggetto ribbon con realtive proprietà
+    cat.ribbon = {
+      color: "",
+      opacity: "",
+    };
+    // cambio colore ribbon in base al sesso e aggiungo pacità in base all'età
+    if (cat.sex === "female") {
+      cat.ribbon.color = "#FF69B4";
+      cat.ribbon.opacity = cat.age / 15;
+    } else {
+      cat.ribbon.color = "#1E90FF";
+      cat.ribbon.opacity = cat.age / 15;
+    }
+    // stampo tutto a video
+    printHtml(
+      "ul.cats",
+      cat.color,
+      cat.name,
+      cat.ribbon.color,
+      cat.ribbon.opacity
+    );
+    // forEach senza return
   });
 
   // aggiungo e rimuovo classe active (effetto hover) --- per allenamento ---
-  $(".fa-cat").mouseenter(function (){
+  $(".fa-cat").mouseenter(function () {
     $(this).addClass("active");
   });
-  $(".fa-cat").mouseleave(function (){
+  $(".fa-cat").mouseleave(function () {
     $(this).removeClass("active");
   });
-  
-  // Milestone 2; 
+
+  // Milestone 2;
   // divido i gatti femmina e i gatti maschi in due diversi array
   // .filter LO UTILIZZO PER FILTRARE I CONTENUTI DI UN ARRAY (return obbligatorio)
   const catsFemale = cats.filter((cat) => {
-    return cat.sex === "female"
+    return cat.sex === "female";
   });
   // console.log(catsFemale)
   const catsMale = cats.filter((cat) => {
-    return cat.sex === "male"
+    return cat.sex === "male";
   });
   // console.log(catsMale)
 
   // li stampo a video in due nuove ul
   catsFemale.forEach((cat) => {
-    printHtml("ul.female", cat.color, cat.name)
+    printHtml(
+      "ul.female",
+      cat.color,
+      cat.name,
+      cat.ribbon.color,
+      cat.ribbon.opacity
+    );
   });
   catsMale.forEach((cat) => {
-    printHtml("ul.male", cat.color, cat.name)
+    printHtml(
+      "ul.male",
+      cat.color,
+      cat.name,
+      cat.ribbon.color,
+      cat.ribbon.opacity
+    );
   });
 
   // Milestone 3
   // Creare un nuovo array con prima tutti i gattini femmina e poi tutti i gattini maschio
   const mergeCats = [...catsFemale, ...catsMale];
-  console.log(mergeCats)
+  console.log(mergeCats);
   // li stampo a video
   mergeCats.forEach((cat) => {
-    printHtml("ul.ordered", cat.color, cat.name)
+    printHtml(
+      "ul.ordered",
+      cat.color,
+      cat.name,
+      cat.ribbon.color,
+      cat.ribbon.opacity
+    );
   });
 }); // END DOC.READY
-
